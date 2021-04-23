@@ -1,0 +1,402 @@
+* {
+    transition-duration: 300ms;
+    font-family: 'Patua One', cursive;
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+    padding: 0;
+    margin: 2px;
+    overflow: auto;
+    color: #ecf0f1;
+    overflow: hidden;
+    background: #2980b9;
+    /* perspective: 1000px; */
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.coluna {
+    width: calc(20% - 4px);
+    height: 364px;
+    background: #ecf0f1;
+    display: block;
+    float: left;
+    border: 2px solid #515A66;
+}
+
+.title {
+    width: 100%;
+    height: 42px;
+    font-size: 40px;
+    line-height: 42px;
+    background: #bdc3c7;
+    color: #34495e;
+}
+
+.numeros {
+    width: 198px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.numero {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 38px;
+    background: #bdc3c7;
+    border-radius: 30px;
+    color: #ecf0f1;
+    margin: 2px;
+    float: left;
+    cursor: pointer;
+}
+
+.numero:hover {
+    background: #95a5a6;
+    color: #ecf0f1;
+}
+
+.saiu {
+    background: #e74c3c;
+    border-radius: 30px;
+    color: #e1f5fe;
+    float: left;
+}
+
+
+.saiu:hover {
+    background: #c0392b;
+    color: #e0f4fd;
+}
+
+.letra {
+    line-height: 10px;
+    font-size: 18px;
+    margin: 0;
+    margin-top: 5px;
+}
+
+.ultimo {
+    width: 124px !important; 
+}
+
+.ultimos {
+    width: 60px;
+    height: 60px;
+    line-height: 48px;
+    font-size: 38px;
+    background: #cfd8dc;
+    border-radius: 30px;
+    color: #8F9DAD;
+    margin: 2px;
+    float: left;
+    cursor: default;
+}
+
+#ultimas {
+    float: left;
+    background: #bdc3c7;
+    width: calc(100% - 4px);
+    min-height: 64px;
+    border: 2px solid #515A66;
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.nul {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    line-height: 36px;
+    font-size: 38px;
+}
+
+.sorteio {
+    width: 508px;
+/*                width: 696px;*/
+    height: 84px;
+    margin-bottom: 5px;
+    clear:both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sorteado {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 48px;
+    background: #e74c3c;
+    border-radius: 50px;
+    color: #ffffff;
+    margin: 2px;
+    padding: 2px;
+    float: left;
+    cursor: default;
+    box-shadow: 0 0 4px #00000077;
+}
+
+#icoQuestion {
+    margin-top: 16px;
+}
+
+#letr {
+    line-height: 20px;
+    font-size: 34px;
+}
+
+#nume {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    line-height: 50px;
+    font-size: 54px;
+}
+
+.botao {
+    width: 200px;
+    height: 52px;
+    line-height: 52px;
+    font-size: 38px;
+    background: #3498db;
+    border-radius: 30px;
+    border: 2px solid #ecf0f1;
+    color: #ecf0f1;
+    margin-top: 14px;
+    margin-left: 2px;
+    float: left;
+    cursor: pointer;
+    transition-duration: 300ms;
+}
+
+.botao:hover {
+    background: #2980b9;
+    color: #ecf0f1;
+    margin-top: 12px;
+    margin-left: 0px;
+    margin-right: -2px;
+    border: 4px solid #ecf0f1;
+/*    box-shadow: 0 0 5px #00000077;*/
+}
+
+.botao:active {
+    background: #2980b9;
+    color: #bdc3c7;
+    margin-top: 15px;
+    margin-left: 3px;
+    margin-right: 1px;
+    border: 1px solid #bdc3c7;
+/*    box-shadow: inset 0 0 15px #00000077;*/
+}
+
+.botao:disabled {
+    background: #d1d8e0;
+    color: #4b6584;
+    margin-top: 15px;
+    margin-left: 3px;
+    margin-right: 1px;
+    border: 1px solid #4b6584;
+/*    box-shadow: inset 0 0 15px #00000077;*/
+}
+
+@keyframes modalAtivando {
+  from {
+        background: #00000000;
+    }
+  30% {
+        background: #000000e5;
+    }
+  85% {
+        background: #000000e5;
+    }
+  to {
+        background: #00000000;
+    }
+}
+
+#modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    position: fixed;
+    left: 0;
+    top: 0;
+    animation-name: modalAtivando;
+    animation-duration: 2s;
+}
+
+@keyframes caindo {
+  from {
+        top: -500px;
+        transform: rotate(-700deg);
+        filter: blur(20px);
+    }
+  50% {
+        filter: blur(0px);
+        transform: rotate(0deg);
+        top: 100px;
+    }
+  85% {
+        transform: rotate(0deg);
+        top: 100px;
+    }
+  to {
+        transform: scale(0.2);
+        top: -156px;
+        box-shadow: 0 0 0 #000000;
+    }
+}
+
+#pedra {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #e74c3c;
+    border-radius: 200px;
+    color: #ffffff;
+    margin: 2px;
+    padding: 2px;
+    float: left;
+    cursor: default;
+    animation-name: caindo;
+    animation-duration: 2s;
+    display: block;
+    top: 130px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 100px #000000;
+}
+
+#pedra .letra {
+    line-height: 128px;
+    font-size: 158px;
+}
+
+#pedra .nul {
+    line-height: 218px;
+    font-size: 278px;
+}
+
+
+.stats {
+    color: #8F9DAD;
+    height: 0px;
+    line-height: 10px;
+    font-size: 16px;
+}
+
+
+
+.options {
+    background: #fcfcfc;
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 10px #66666655;
+    opacity: 0.4;
+}
+
+#estatisticas {
+    right: 60px;
+    opacity: 1 !important;
+}
+
+#states {
+    left: 60px;
+    /* width: 194px !important; */
+    width: 242px !important;
+    /* min-height: 50px; */
+    /* height: 92px; */
+}
+
+.options:hover {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+.ico {
+    line-height: 20px !important;
+    vertical-align: middle !important;
+}
+
+
+
+#state {
+    z-index: 99;
+    float: left;
+    padding: 10px;
+    background: none;
+    border: 1px solid #ccc;
+    opacity: 0.4;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 2px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#state:hover {
+    opacity: 1;
+}
+
+
+#state button {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    margin: -10px -10px -10px -10px;
+    border-radius: 9px;
+    font-size: 18px !important;
+    color: #515A66;
+}
+#state button:active {
+    background: #bbb;
+    opacity: 1;
+}
+
+
+.oculto {
+    display: none !important;
+}

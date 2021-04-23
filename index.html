@@ -1,0 +1,578 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+        <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script> -->
+<!--        <script src="number.js"></script>-->
+        <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        
+        <link rel="icon" type="image/png" href="bingo.png"/>
+
+    </head>
+        <div id="states" class="options">
+            <div id="state">
+                <button id="btn_shuffle" onclick="switchAuto();"><i id="icoShuffle" class="ico fas fa-random fa-lg oculto"></i><i id="icoNotShuffle" class="ico fas fa-long-arrow-alt-right fa-lg"></i></button>
+            </div>
+            <div id="state">
+                <button id="btn_mute" onclick="switchSound()"><i id="icoSoundUp" class="ico fas fa-volume-up fa-lg"></i>
+                <i id="icoSoundMute" class="fas fa-volume-off fa-lg oculto"></i></button>
+            </div>
+            <div id="state">
+                <button id="btn_anim" onclick="switchAnimation()"><i id="icoAnimation" class="ico fas fa-pause-circle fa-lg"></i>
+                <i id="icoNoAnimation" class="fas fa-play-circle fa-lg oculto"></i></button>
+            </div>
+            <div id="state">
+                <button id="btn_anim" onclick="switchFullscreen()"><i id="icoFullscreen" class="ico fas fa-expand"></i>
+                <i id="icoNoFullscreen" class="fas fa-compress oculto"></i></button>
+            </div>
+        </div>
+    
+    
+        <div id="modal">
+            <div id="pedra"><p id='modal_letra' class="letra"></p><p id='modal_numero' class="nul"></p></div>
+        </div>
+        <div id="estatisticas" class="options">
+            <p id='faltam' class="stats">Faltam: 75</p>
+            <p id='foram' class="stats">Foram: 0</p>
+        </div>
+        <div class="sorteio">
+            <div class="botao oculto" id="btn_sortear" onclick="sortear()">SORTEAR</div>
+            <div class="botao" id="btn_voltar" onclick="voltar()">VOLTAR</div>
+            <div id="sorteado"><i id="icoQuestion" class="fas fa-question fa-lg"></i><p id='letr' class="letra"></p><p id='nume' class="nul"></p></div>
+            <div class="botao" id="btn_limpar" onclick="limpar()">LIMPAR</div>
+        </div>
+        <div class="coluna" id="colB">
+            <div class="title">B</div>
+            <div class="numeros">
+                <div class="numero" id="B1" onclick="marcarNumero(id);">1</div>
+                <div class="numero" id="B2" onclick="marcarNumero(id);">2</div>
+                <div class="numero" id="B3" onclick="marcarNumero(id);">3</div>
+                <div class="numero" id="B4" onclick="marcarNumero(id);">4</div>
+                <div class="numero" id="B5" onclick="marcarNumero(id);">5</div>
+                <div class="numero" id="B6" onclick="marcarNumero(id);">6</div>
+                <div class="numero" id="B7" onclick="marcarNumero(id);">7</div>
+                <div class="numero" id="B8" onclick="marcarNumero(id);">8</div>
+                <div class="numero" id="B9" onclick="marcarNumero(id);">9</div>
+                <div class="numero" id="B10" onclick="marcarNumero(id);">10</div>
+                <div class="numero" id="B11" onclick="marcarNumero(id);">11</div>
+                <div class="numero" id="B12" onclick="marcarNumero(id);">12</div>
+                <div class="numero" id="B13" onclick="marcarNumero(id);">13</div>
+                <div class="numero" id="B14" onclick="marcarNumero(id);">14</div>
+                <div class="numero" id="B15" onclick="marcarNumero(id);">15</div>
+            </div>
+        </div>
+        <div class="coluna" id="colI">
+            <div class="title">I</div>
+            <div class="numeros">
+                <div class="numero" id="I16" onclick="marcarNumero(id);">16</div>
+                <div class="numero" id="I17" onclick="marcarNumero(id);">17</div>
+                <div class="numero" id="I18" onclick="marcarNumero(id);">18</div>
+                <div class="numero" id="I19" onclick="marcarNumero(id);">19</div>
+                <div class="numero" id="I20" onclick="marcarNumero(id);">20</div>
+                <div class="numero" id="I21" onclick="marcarNumero(id);">21</div>
+                <div class="numero" id="I22" onclick="marcarNumero(id);">22</div>
+                <div class="numero" id="I23" onclick="marcarNumero(id);">23</div>
+                <div class="numero" id="I24" onclick="marcarNumero(id);">24</div>
+                <div class="numero" id="I25" onclick="marcarNumero(id);">25</div>
+                <div class="numero" id="I26" onclick="marcarNumero(id);">26</div>
+                <div class="numero" id="I27" onclick="marcarNumero(id);">27</div>
+                <div class="numero" id="I28" onclick="marcarNumero(id);">28</div>
+                <div class="numero" id="I29" onclick="marcarNumero(id);">29</div>
+                <div class="numero" id="I30" onclick="marcarNumero(id);">30</div>
+            </div>
+        </div>
+        <div class="coluna" id="colN">
+            <div class="title">N</div>
+            <div class="numeros">
+                <div class="numero" id="N31" onclick="marcarNumero(id);">31</div>
+                <div class="numero" id="N32" onclick="marcarNumero(id);">32</div>
+                <div class="numero" id="N33" onclick="marcarNumero(id);">33</div>
+                <div class="numero" id="N34" onclick="marcarNumero(id);">34</div>
+                <div class="numero" id="N35" onclick="marcarNumero(id);">35</div>
+                <div class="numero" id="N36" onclick="marcarNumero(id);">36</div>
+                <div class="numero" id="N37" onclick="marcarNumero(id);">37</div>
+                <div class="numero" id="N38" onclick="marcarNumero(id);">38</div>
+                <div class="numero" id="N39" onclick="marcarNumero(id);">39</div>
+                <div class="numero" id="N40" onclick="marcarNumero(id);">40</div>
+                <div class="numero" id="N41" onclick="marcarNumero(id);">41</div>
+                <div class="numero" id="N42" onclick="marcarNumero(id);">42</div>
+                <div class="numero" id="N43" onclick="marcarNumero(id);">43</div>
+                <div class="numero" id="N44" onclick="marcarNumero(id);">44</div>
+                <div class="numero" id="N45" onclick="marcarNumero(id);">45</div>
+            </div>
+        </div>
+        <div class="coluna" id="colG">
+            <div class="title">G</div>
+            <div class="numeros">
+                <div class="numero" id="G46" onclick="marcarNumero(id);">46</div>
+                <div class="numero" id="G47" onclick="marcarNumero(id);">47</div>
+                <div class="numero" id="G48" onclick="marcarNumero(id);">48</div>
+                <div class="numero" id="G49" onclick="marcarNumero(id);">49</div>
+                <div class="numero" id="G50" onclick="marcarNumero(id);">50</div>
+                <div class="numero" id="G51" onclick="marcarNumero(id);">51</div>
+                <div class="numero" id="G52" onclick="marcarNumero(id);">52</div>
+                <div class="numero" id="G53" onclick="marcarNumero(id);">53</div>
+                <div class="numero" id="G54" onclick="marcarNumero(id);">54</div>
+                <div class="numero" id="G55" onclick="marcarNumero(id);">55</div>
+                <div class="numero" id="G56" onclick="marcarNumero(id);">56</div>
+                <div class="numero" id="G57" onclick="marcarNumero(id);">57</div>
+                <div class="numero" id="G58" onclick="marcarNumero(id);">58</div>
+                <div class="numero" id="G59" onclick="marcarNumero(id);">59</div>
+                <div class="numero" id="G60" onclick="marcarNumero(id);">60</div>
+            </div>
+        </div>
+        <div class="coluna" id="colO">
+            <div class="title">O</div>
+            <div class="numeros">
+                <div class="numero" id="O61" onclick="marcarNumero(id);">61</div>
+                <div class="numero" id="O62" onclick="marcarNumero(id);">62</div>
+                <div class="numero" id="O63" onclick="marcarNumero(id);">63</div>
+                <div class="numero" id="O64" onclick="marcarNumero(id);">64</div>
+                <div class="numero" id="O65" onclick="marcarNumero(id);">65</div>
+                <div class="numero" id="O66" onclick="marcarNumero(id);">66</div>
+                <div class="numero" id="O67" onclick="marcarNumero(id);">67</div>
+                <div class="numero" id="O68" onclick="marcarNumero(id);">68</div>
+                <div class="numero" id="O69" onclick="marcarNumero(id);">69</div>
+                <div class="numero" id="O70" onclick="marcarNumero(id);">70</div>
+                <div class="numero" id="O71" onclick="marcarNumero(id);">71</div>
+                <div class="numero" id="O72" onclick="marcarNumero(id);">72</div>
+                <div class="numero" id="O73" onclick="marcarNumero(id);">73</div>
+                <div class="numero" id="O74" onclick="marcarNumero(id);">74</div>
+                <div class="numero" id="O75" onclick="marcarNumero(id);">75</div>
+            </div>
+        </div>
+        <div id="ultimas">
+        </div>
+        
+        <script>
+            var numeros = [];
+            var ultimos = [];
+            
+            var letr = document.getElementById('letr');
+            var nume = document.getElementById('nume');
+            var modal_letra = document.getElementById('modal_letra');
+            var modal_numero = document.getElementById('modal_numero');
+            var faltam = document.getElementById('faltam');
+            var foram = document.getElementById('foram');
+            var modal = document.getElementById('modal');
+
+            var btn_sortear = document.getElementById('btn_sortear');
+            
+            var som = true;
+            var sortear_frase = false;
+            var pode_sortear = true;
+            var automatico = true;
+            var animation = true;
+            var fullscreen = false;
+
+            let utter = new SpeechSynthesisUtterance()
+            utter.lang = 'pt-BR'
+            utter.text = 'Pronto! Vamos começar'
+            utter.volume = 1
+
+            var numerosEscrito = [
+                'COMEÇOU O JOGO, Letra Bê, UM',
+                'Letra Bê, DOIS',
+                'Letra Bê, TRÊS',
+                'Letra Bê, QUATRO',
+                'Letra Bê, CINCO',
+                'Letra Bê, SEIS',
+                'Letra Bê, SETE',
+                'Letra Bê, OITO',
+                'Letra Bê, NOVE',
+                'Letra Bê, DEZ',
+                'Esse eu joguei na megasena, Letra Bê, ONZE',
+                'Letra Bê, DOZE',
+                'Letra Bê, TREZE',
+                'Letra Bê, CATORZE',
+                'Letra Bê, QUINZE',
+                'Letra Ih, DEZESSEIS',
+                'Letra Ih, DEZESSETE',
+                'Letra Ih, DEZOITO',
+                'Letra Ih, DEZENOVE',
+                'Letra Ih, VINTE',
+                'Letra Ih, VINTE E UM',
+                'Letra Ih, VINTE E DOIS, DOIS PATINHOS NA LAGOA',
+                'Letra Ih, VINTE E TRÊS',
+                'Letra Ih, VINTE E QUATRO',
+                'Letra Ih, VINTE E CINCO',
+                'Letra Ih, VINTE E SEIS',
+                'Letra Ih, VINTE E SETE',
+                'Letra Ih, VINTE E OITO',
+                'Letra Ih, VINTE E NOVE',
+                'Letra Ih, TRINTA',
+                'Letra ENE, TRINTA E UM',
+                'Letra ENE, TRINTA E DOIS',
+                'Letra ENE, TRINTA E TRÊS',
+                'Letra ENE, TRINTA E QUATRO',
+                'Foi esse que você pediu, então toma aí, Letra ENE, TRINTA E CINCO',
+                'Letra ENE, TRINTA E SEIS',
+                'Letra ENE, TRINTA E SETE',
+                'Letra ENE, TRINTA E OITO',
+                'Letra ENE, TRINTA E NOVE',
+                'Letra ENE, QUARENTA',
+                'Letra ENE, QUARENTA E UM',
+                'Letra ENE, QUARENTA E DOIS',
+                'Letra ENE, QUARENTA E TRÊS',
+                'Letra ENE, QUARENTA E QUATRO',
+                'Letra ENE, QUARENTA E CINCO',
+                'Letra GÊ, QUARENTA E SEIS',
+                'Letra GÊ, QUARENTA E SETE',
+                'Letra GÊ, QUARENTA E OITO',
+                'Letra GÊ, QUARENTA E NOVE',
+                'Letra GÊ, CINQUENTA',
+                'Boa ideia, Letra GÊ, CINQUENTA E UM',
+                'Letra GÊ, CINQUENTA E DOIS',
+                'Letra GÊ, CINQUENTA E TRÊS',
+                'Letra GÊ, CINQUENTA E QUATRO',
+                'Agora você marca, Letra GÊ, CINQUENTA E CINCO',
+                'Letra GÊ, CINQUENTA E SEIS',
+                'Letra GÊ, CINQUENTA E SETE',
+                'Letra GÊ, CINQUENTA E OITO',
+                'Letra GÊ, CINQUENTA E NOVE',
+                'Letra GÊ, SESSENTA',
+                'Letra Ó, SESSENTA E UM',
+                'Letra Ó, SESSENTA E DOIS',
+                'Letra Ó, SESSENTA E TRÊS',
+                'Letra Ó, SESSENTA E QUATRO',
+                'Letra Ó, SESSENTA E CINCO',
+                'Letra Ó, SESSENTA E SEIS',
+                'Letra Ó, SESSENTA E SETE',
+                'Letra Ó, SESSENTA E OITO',
+                'Letra Ó, SESSENTA E NOVE',
+                'Letra Ó, SETENTA, SE NÃO DER, TENTA DE NOVO',
+                'O número da casa da bruxa...Letra ÓÓ, SETENTA E UM',
+                'Letra Ó, SETENTA E DOIS',
+                'Letra Ó, SETENTA E TRÊS',
+                'Letra Ó, SETENTA E QUATRO',
+                'Letra ÓÓ, SETENTA E CINCO',
+            ]
+
+            var frasesAleatorias = [
+                'Quero ver que está na boa aí',
+                'Vamos galera',
+                'Quero saber que é que vai ganhar este maravilhoso prêmio',
+                'Pensei que tivesse ouvido BINGO por aí',
+                'Essa partida está bem disputada ein',
+                'VIXI, eu ouvi que ela tá na fria ali',
+                'VIXI, mas tá muito fraco esse pessoal aqui produção',
+                'Parece que tem gente comendo bola',
+                'Valendo aquele lindo carro cor de gelo que está estacionado lá na porta',
+                'Quem será que vai ganhar ein',
+                'Parece que só vai sair ano que vem esse prêmio',
+                'Atenção atenção. Muito obrigado pela atenção',
+                'SILÊNCIO! Podemos seguir agora',
+                'Nem ganhou na mega sena e quer ganhar aqui, HAHAHA',
+                'Azar no amor e azar no jogo... a vida dá dessas',
+                'Azar no amor e azar no jogo... foi assim comigo e a Alexa...',
+                'Não foi dessa vez, mas na próxima quem sabe',
+                'Tô girando que nem louco aqui essas bolinhas',
+                'TUTS TUTS TUTS TUTS TUTS, tá esquentando...',
+                'Recalculando rota... não, pera',
+                'Bora que eu quero ver esse prêmio sair hoje',
+                'Será que agora vai?',
+                'Agora vai, eu tô sentindo',
+                'Quem está na boa?',
+                'Não tô vendo ninguém na boa aí',
+            ]
+
+            utter.onend = function() {
+                if(sortear_frase && Math.random() < 0.3){
+                    utter.text = frasesAleatorias[Math.floor(Math.random() * (frasesAleatorias.length - 1))]
+                    window.speechSynthesis.speak(utter)
+                    // btn_sortear.disabled = false
+                    // pode_sortear = true
+                } else {
+                    btn_sortear.disabled = false
+                    pode_sortear = true
+                }
+                sortear_frase = false
+            }
+
+            // speak
+            window.speechSynthesis.speak(utter)
+            
+            for(let i = 1; i <= 75; i++){
+                numeros.push(i);
+            }
+                            
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            
+            var deg = 0;
+            
+            document.body.onkeyup = function(e){
+                if(e.keyCode == 32){
+                    if(pode_sortear){
+                        sortear()
+                    }
+                }
+            }
+
+            function render() {
+//                background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+//                background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+                // document.body.style.background = 'linear-gradient(' + deg + 'deg, #89f7fe, #66a6ff)';
+                // deg++;
+                // requestAnimationFrame(render);
+                updateIcons()
+            }
+            
+            render();
+//            function contextMenu(data){
+//                sortear();
+//                let bola = document.getElementById(data);
+//                if(bola.classList.contains('saiu')){
+//                    bola.classList.remove('saiu');
+//                    let pos = ultimos.indexOf(data);
+//                    ultimos.splice(pos, 1);
+//                } else {
+//                    bola.classList.add('saiu');
+//                    ultimos.push(data);
+//                }
+//                atualizarUltimas();
+//            }
+            
+            function marcarNumero(id){
+                if(!automatico){
+                    if(ultimos.indexOf(id) == -1){
+                        var num = id.slice(1, id.length);
+
+                        let bola = document.getElementById(id);
+                        bola.classList.add('saiu');
+
+                        // utter.text = numerosEscrito[parseInt(num) - 1]
+                        
+                        // btn_sortear.disabled = true
+                        // window.speechSynthesis.speak(utter)
+                        // console.log('Vou falar o número ', num)
+
+                        ultimos.push(id);
+                        console.log('ID: ' + id + ' | num: ' + num + ' | index: ' + numeros.indexOf(parseInt(num)));
+                        numeros.splice(numeros.indexOf(parseInt(num)), 1);
+                        atualizarUltimas();
+
+                        ativarModal(id);
+                    }
+                }
+            }
+            
+            function atualizarUltimas(){
+                let ultimasBolas = document.getElementById('ultimas');
+                
+                var content = '';
+                
+                for(let i = (ultimos.length-1); i >= 0; i--){
+                    content += "<div class='numero saiu' id='" + ultimos[i] + "'><p class='letra'>" + ultimos[i].substring(0,1) + "</p><p class='nul'>" + ultimos[i].substring(1, ultimos[i].length) + "</p></div>";
+                }
+                
+                ultimasBolas.innerHTML = content;
+                faltam.innerHTML = 'Faltam: ' + numeros.length;
+                foram.innerHTML = 'Foram: ' + ultimos.length;
+                
+                if(ultimos.length == 0){
+                    document.getElementById('icoQuestion').classList.remove('oculto');
+                } else {
+                    document.getElementById('icoQuestion').classList.add('oculto');
+                }
+            }
+            
+            function voltar(){
+                if(ultimos.length > 0){
+                    let data = ultimos[ultimos.length - 1];
+                    let bola = document.getElementById(data);
+                    if(bola.classList.contains('saiu')){
+                        bola.classList.remove('saiu');
+                        let pos = ultimos.indexOf(data);
+                        let n = parseInt(data.slice(1,ultimos[ultimos.length - 1].length));
+                        numeros.push(n);
+                        ultimos.splice(pos, 1);
+                    }
+                    if(ultimos.length == 0){
+                        letr.innerHTML = '';
+                        nume.innerHTML = '';
+                    } else {
+                        letr.innerHTML = ultimos[ultimos.length - 1].slice(0,1);
+                        nume.innerHTML = ultimos[ultimos.length - 1].slice(1,ultimos[ultimos.length - 1].length);
+                    }
+                    numeros.sort(function(a, b){return a - b});
+
+                    atualizarUltimas();
+                }
+            }
+            
+            function limpar(){
+                utter.text = 'Pronto! Vamos começar'
+                window.speechSynthesis.speak(utter)
+                sortear_frase = false
+                numeros = [];
+                for(let i = 1; i <= 75; i++){
+                    document.getElementById(concatLetter(i)).classList.remove('saiu');
+                    numeros.push(i);
+                }
+                ultimos = [];
+                atualizarUltimas();
+                letr.innerHTML = '';
+                nume.innerHTML = '';
+            }
+            
+            function sortear(){
+                var aleatorio = Math.floor(Math.random() * numeros.length);
+                var nel = concatLetter(numeros[aleatorio]);
+                let bola = document.getElementById(nel);
+                bola.classList.add('saiu');
+                
+                ultimos.push(nel);
+                numeros.splice(aleatorio, 1);
+                atualizarUltimas();
+                
+                ativarModal(nel);
+            }
+            
+            function concatLetter(number){
+                var result;
+                if(number <= 15){
+                    result = 'B';
+                } else if(number > 15 && number <= 30){
+                    result = 'I';
+                } else if(number > 30 && number <= 45){
+                    result = 'N';
+                } else if(number > 45 && number <= 60){
+                    result = 'G';
+                } else if(number > 60 && number <= 75){
+                    result = 'O';
+                }
+                return result + number;
+            }
+            
+            function ativarModal(nel){
+                if(animation){
+                    modal_letra.innerHTML = nel.substring(0,1);
+                    modal_numero.innerHTML = nel.substring(1, nel.length);
+
+                    modal.style.display = 'block';
+                    setTimeout(function(){
+                        letr.innerHTML = nel.substring(0,1);
+                        nume.innerHTML = nel.substring(1, nel.length);
+                        modal.style.display = 'none';
+                    }, 2000);
+                } else {
+                    letr.innerHTML = nel.substring(0,1);
+                    nume.innerHTML = nel.substring(1, nel.length);
+                    modal.style.display = 'none';
+                }
+                if(som){
+                    // som = new sound("sorteio.mp3");
+                    // som.play();
+                    
+                    utter.text = numerosEscrito[parseInt(nel.substring(1, nel.length)) - 1]
+
+                    sortear_frase = true
+                    pode_sortear = false
+                    btn_sortear.disabled = true
+                    window.speechSynthesis.speak(utter)
+                    console.log('Vou falar o número ', nel.substring(1, nel.length))
+                }
+//                setTimeout(function(){
+//                    letr.innerHTML = nel.substring(0,1);
+//                    nume.innerHTML = nel.substring(1, nel.length);
+//                    modal.style.display = 'none';
+//                }, 2000);
+            }
+            
+            function sound(src){
+                this.sound = document.createElement("audio");
+                this.sound.src = src;
+                this.sound.setAttribute("preload", "auto");
+                this.sound.setAttribute("controls", "none");
+                this.sound.style.display = "none";
+                document.body.appendChild(this.sound);
+                this.play = function(){
+                    this.sound.play();
+                }
+                this.stop = function(){
+                    this.sound.pause();
+                }
+            }
+            
+            function switchSound(){
+                som = !som;
+                updateIcons();
+            }
+            
+            function switchAuto(){
+                automatico = !automatico;
+                updateIcons();
+            }
+            
+            function switchAnimation(){
+                animation = !animation;
+                updateIcons();
+            }
+            
+            function switchFullscreen(){
+                fullscreen = !fullscreen;
+                updateIcons();
+                var elem = document.documentElement;
+
+                if(fullscreen){
+                    if (elem.requestFullscreen) {
+                        elem.requestFullscreen();
+                    } else if (elem.mozRequestFullScreen) { /* Firefox */
+                        elem.mozRequestFullScreen();
+                    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                        elem.webkitRequestFullscreen();
+                    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                        elem.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) { /* Firefox */
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) { /* IE/Edge */
+                        document.msExitFullscreen();
+                    }
+                }
+
+            }
+            
+            function updateIcons(){
+                if(som){
+                    document.getElementById("icoSoundUp").classList.remove('oculto');
+                    document.getElementById("icoSoundMute").classList.add('oculto');
+                } else {
+                    document.getElementById("icoSoundUp").classList.add('oculto');
+                    document.getElementById("icoSoundMute").classList.remove('oculto');
+                }
+                if(automatico){
+                    document.getElementById("icoShuffle").classList.remove('oculto');
+                    document.getElementById("icoNotShuffle").classList.add('oculto');
+                    document.getElementById("btn_sortear").classList.remove('oculto');
+                    document.getElementById("btn_voltar").classList.add('oculto');
+                } else {
+                    document.getElementById("icoShuffle").classList.add('oculto');
+                    document.getElementById("icoNotShuffle").classList.remove('oculto');
+                    document.getElementById("btn_sortear").classList.add('oculto');
+                    document.getElementById("btn_voltar").classList.remove('oculto');
+                }
+                if(animation){
+                    document.getElementById("icoAnimation").classList.add('oculto');
+                    document.getElementById("icoNoAnimation").classList.remove('oculto');
+                } else {
+                    document.getElementById("icoAnimation").classList.remove('oculto');
+                    document.getElementById("icoNoAnimation").classList.add('oculto');
+                }
+                if(fullscreen){
+                    document.getElementById("icoFullscreen").classList.add('oculto');
+                    document.getElementById("icoNoFullscreen").classList.remove('oculto');
+                } else {
+                    document.getElementById("icoFullscreen").classList.remove('oculto');
+                    document.getElementById("icoNoFullscreen").classList.add('oculto');
+                }
+            }
+        </script>
+    </body>
+</html>
